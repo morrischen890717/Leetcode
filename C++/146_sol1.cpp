@@ -3,7 +3,7 @@ public:
     int capacity;
     unordered_map<int, int> m;
     queue<int> q;
-    unordered_map<int, int> queue_num;
+    unordered_map<int, int> queue_num; // queue_num 記錄 key 在 q 中出現幾次
     LRUCache(int capacity) {
         this->capacity = capacity;
     }
