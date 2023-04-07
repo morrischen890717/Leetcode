@@ -10,6 +10,7 @@ public:
             recursion(grid, m, n, r, c - 1);
             recursion(grid, m, n, r, c + 1);
         }
+        return;
     }
     int numEnclaves(vector<vector<int>>& grid) {
         int m = grid.size();
