@@ -14,6 +14,7 @@ public:
     int sumNumbers(TreeNode* root) { 
         /*
         Using Morris Traversal (Preorder) can reach O(1) space complexity while remaining O(n) time complexity
+        https://leetcode.com/problems/sum-root-to-leaf-numbers/solutions/3294304/image-explanation-3-methods-recursive-bfs-o-1-space-morris-traversal-preorder/
         */
         TreeNode *cur = root;
         TreeNode *prev;
