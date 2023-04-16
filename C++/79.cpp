@@ -31,7 +31,9 @@ public:
             "a a a a a a a a"
             "a a a a a a a a"
             "a a a a b a a a"
-        If we start searching from letter 'a' we will have lots of branches to check, however if we reverse word: word = word[::-1], then our word becomes word = "baaaaaaa" and in our board we have only one letter b, then we start checking only from one position on board where letter 'b' is located, therefore we will have less number of calculation.
+        If we start searching from letter 'a' we will have lots of branches to check, however if we reverse word: word = word[::-1], 
+        then our word becomes word = "baaaaaaa" and in our board we have only one letter b, 
+        then we start checking only from one position on board where letter 'b' is located, therefore we will have less number of calculation.
         */
         if(cnt[word[0]] > cnt[word[l - 1]])  // search pruning (very useful, its make execution time from 1910ms(beats 5.1%) to 135ms(beats 98.14%))
             reverse(word.begin(), word.end());
