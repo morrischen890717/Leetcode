@@ -1,7 +1,7 @@
 class Solution {
 public:
     int calculate(string s) {  // without using stack/deque
-        s += '+';
+        s += '+';  // for the last number in the string
         int n = s.length();
         int ans = 0, prevnum = 0, currnum = 0;
         char oper = '+';
