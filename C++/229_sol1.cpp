@@ -33,7 +33,7 @@ public:
                 cnt2 = 1;
             }
         }
-        // because we could not sure whether the # of top 2 elements are more than n/3, so we need to check again
+        // we can sure that res1 and res2 are the top 2 elements, but we could not sure whether the # of top 2 elements are more than n/3, so we need to check again
         cnt1 = cnt2 = 0;
         for(int i = 0; i < n; i++){
             if(nums[i] == res1)
