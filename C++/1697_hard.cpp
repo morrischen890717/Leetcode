@@ -37,7 +37,11 @@ public:
         return find(parent, weight, query[0], query[2]) == find(parent, weight, query[1], query[2]);    // if they can meet each other at same node with the constraint of limit(query[2]), then return true
     }
 
-    vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>>& edgeList, vector<vector<int>>& queries) { // using Union-Find Alogrithm (union by size)
+    vector<bool> distanceLimitedPathsExist(int n, vector<vector<int>>& edgeList, vector<vector<int>>& queries) {
+        /*
+        using Union-Find Alogrithm (union by size)
+        reference: https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/solutions/3465024/day-394-custom-union-find-100-0ms-python-java-c-explained-approach/
+        */
         vector<int> parent(n);
         vector<int> size(n, 1);
         vector<int> weight(n);
