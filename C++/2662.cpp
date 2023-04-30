@@ -1,6 +1,10 @@
 class Solution {
 public:
-    int minimumCost(vector<int>& start, vector<int>& target, vector<vector<int>>& specialRoads) {   // using Dijkstra's Algorithm
+    int minimumCost(vector<int>& start, vector<int>& target, vector<vector<int>>& specialRoads) {
+        /*
+        using Dijkstra's Algorithm
+        reference: https://leetcode.com/problems/minimum-cost-of-a-path-with-special-roads/solutions/3468268/dijkstra-s-algorithm-with-roads-as-edges/
+        */
         vector<vector<int>> roads;
         priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
         vector<int> dist;
