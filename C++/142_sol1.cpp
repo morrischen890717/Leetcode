@@ -18,13 +18,17 @@ public:
                 /*
                 Assume the distance of head to the node where the cycle begins
                 is m, the distance of the node where the cycle begins to the 
-                node where slow and fast meet is n, the distance of the node 
+                node where slow and fast meet is p, the distance of the node 
                 where slow and fast meet to the node where the cycle begins is 
-                k. Slow goes m+n steps while fast goes m+2n+k steps until the 
-                first time they meet each other. And based on the setting that 
-                slow goes one step while fast goes two steps every time, we can 
-                know that 2(m+n) = m+2n+k => m=k, so this approach(set slow to 
-                head) will work.
+                k. Slow goes m+p steps while fast goes m+p+n*(p+k) steps until the first time they meet each other.
+                And based on the setting that slow goes one step while fast 
+                goes two steps every time, we can know that 2(m+p) = m+p+n*(p+k) => 
+                m+p = n*(p+k) => m+p = (p+k) + (n-1)*(p+k) => m = k + (n-1)*(p+k), 
+                so if slow start from head and fast start from the first node 
+                they meet, and two pointers both goes one step a time, then 
+                slow goes m steps to the node where cycle begins and fast goes 
+                n-1 times cycle and goes k steps to the node where cycle 
+                begins, so this approach(set slow to head) will work.
                 */
                 slow = head;
                 while(slow != fast){
