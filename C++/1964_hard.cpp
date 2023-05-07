@@ -7,7 +7,7 @@ public:
         int len = 0;
         for(int i = 0; i < n; i++){
             int l = 0, r = len - 1; 
-            while(l <= r){  // using binary search to find the position which obstacles[i] should insert/replace
+            while(l <= r){  // using binary search to find the position where obstacles[i] should insert/replace
                 int mid = (l + r) / 2;
                 if(obstacles[i] >= increase_subseq[mid])
                     l = mid + 1;
