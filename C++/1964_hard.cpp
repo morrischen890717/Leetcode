@@ -1,6 +1,9 @@
 class Solution {
 public:
     vector<int> longestObstacleCourseAtEachPosition(vector<int>& obstacles) {
+        /*
+        reference: https://leetcode.com/problems/find-the-longest-valid-obstacle-course-at-each-position/solutions/3494489/python-java-c-simple-solution-easy-to-understand/
+        */
         int n = obstacles.size();
         vector<int> ans;
         vector<int> increase_subseq(n);
