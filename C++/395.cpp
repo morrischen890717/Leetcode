@@ -11,7 +11,7 @@ public:
         int len = s.length();
         for(int diff_char = 1; diff_char <= 26; diff_char++){
             vector<int> cnt(26, 0);
-            int i = 0, j = 0;
+            int i = 0;
             int cur_diff_char = 0;
             int no_less_than_k = 0;
             for(int j = 0; j < len; j++){
