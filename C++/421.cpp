@@ -17,7 +17,7 @@ public:
             int new_try = max_xor | (1 << i);
             for(auto& it: appear){
                 int left_part = it.first;
-                int anothernum = left_part ^ new_try;
+                int anothernum = left_part ^ new_try; // if a ^ b = c, then a ^ c = b
                 if(appear.count(anothernum) > 0){
                     max_xor = new_try;
                     break;
