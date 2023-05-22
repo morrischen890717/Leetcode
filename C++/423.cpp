@@ -70,9 +70,7 @@ public:
         cnt['e'] -= tmp;
         cnt['e'] -= tmp;
         for(int i = 0; i < 10; i++){
-            for(int j = 0; j < num[i]; j++){
-                ans += ('0' + i);
-            }
+            ans.append(num[i], '0' + i);
         }
         return ans;
     }
