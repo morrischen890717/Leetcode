@@ -10,7 +10,7 @@ public:
                 if(nums[j] & bit)
                     cnt++;
             }
-            sum += cnt * (n - cnt);
+            sum += cnt * (n - cnt); // cnt: # of num which is 1 in i-th bit, (n-cnt): # of num which is 0 in i-th bit
         }
         return sum;
     }
