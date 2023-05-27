@@ -13,6 +13,6 @@ public:
         // dp[l][r] means the value that the player who does the first take (could be either player A or B) can win over another player when focus on nums[l] ~ nums[r]
         vector<vector<int>> dp(n + 1, vector<int> (n + 1, INT_MIN));
         int l = 0, r = n - 1;
-        return (solve(nums, n, dp, l, r) >= 0 ? true : false);
+        return solve(nums, n, dp, l, r) >= 0;
     }
 };
