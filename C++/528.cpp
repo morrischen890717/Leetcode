@@ -14,8 +14,17 @@ public:
     
     int pickIndex() {
         int pick = rand() % sum + 1;
-        auto it = lower_bound(prefix.begin(), prefix.end(), pick);
-        return it - prefix.begin();
+        int l = 0, r = prefix.size() - 1;
+        while(l <= r){
+            int mid = l + (r - l) / 2;
+            if(prefix[mid] == pick)
+                return mid;
+            else if(prefix[mid] < pick)
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+        return l;
     }
 };
 
