@@ -3,6 +3,7 @@ public:
     int firstMissingPositive(vector<int>& nums) {
         /*
         time complexity: O(N), space complexity: O(1) (because we modify the original vector)
+        Main Point: Put each number in its right place.
         nums[i] = i - 1 (e.g. nums[0] = 1, nums[1] = 2) if value i - 1 exists in the original vector,
         otherwise nums[i] will be a negative number
         we do not care about the value which > nums.size() because the answer must less than or equal to nums.size
