@@ -7,7 +7,8 @@ public:
         (
         e.g. nums = {7, 2, 3}, cost = {3, 5, 1}, the new vector should be [2, 2, 2, 2, 2, 3, 7, 7, 7], the median would be 2, so we should let all element to be 2 with their costs
         (equals to let each element in new vector to be 2 with the cost = 1,
-        nums[i] add 1 with cost[i] equals to cost[i] of nums[i] add 1 with cost = 1)
+        nums[i] add 1 with cost[i] equals to cost[i] of nums[i] add 1 with cost = 1
+        (e.g. "2" + 5 === "2" + 1, "2" + 1, "2" + 1, "2" + 1, "2" + 1))
         )
         The answer is the sum of the costs which make each nums[i] to median
 
