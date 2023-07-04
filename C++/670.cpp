@@ -9,7 +9,6 @@ public:
             if(s[i] > max_digit){
                 max_digit = s[i];
                 max_idx = i;
-
             }
             else if(s[i] < max_digit){
                 left_idx = i;
