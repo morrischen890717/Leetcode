@@ -6,7 +6,7 @@ public:
     
     bool uni(vector<int>& parent, vector<int>& size, int i, int j){
         int root_i = find(parent, i), root_j = find(parent, j);
-        if(root_i == root_j) // already in the same connected component
+        if(root_i == root_j) // two nodes are already in the same connected component, the edge will result in a cycle
             return false;
         if(size[root_i] < size[root_j]){
             parent[root_i] = root_j;
