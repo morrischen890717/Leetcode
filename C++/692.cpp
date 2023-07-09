@@ -1,6 +1,10 @@
 class Solution {
 public:
     vector<string> topKFrequent(vector<string>& words, int k) {
+        /*
+        time complexity: O(Nlog(K))
+        space complexity: O(N)
+        */
         unordered_map<string, int> cnt;
         for(string& word: words){
             cnt[word]++;
