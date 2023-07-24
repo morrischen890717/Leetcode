@@ -20,11 +20,11 @@ public:
         for(int k = 1; k <= n; k++){
             if(!(mask & (1 << k))){ // find which digit is still available
                 board[i][j] = '0' + k;
-                addOrRemove(block[b], row[i], col[j], k);
+                addOrRemove(block[b], row[i], col[j], k); // add
                 if(solve(board, block, row, col, n, id + 1))
                     return true;
                 board[i][j] = '.';
-                addOrRemove(block[b], row[i], col[j], k);
+                addOrRemove(block[b], row[i], col[j], k); // remove
             }
         }
         return false;
