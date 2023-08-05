@@ -17,16 +17,16 @@ public:
             if(dominoes[i] == '.')
                 continue;
             if(prev == 'L' && dominoes[i] == 'L')
-                    add('L', i - prevId - 1, ans);
-                else if(prev == 'L' && dominoes[i] == 'R')
-                    add('.', i - prevId - 1, ans);
-                else if(prev == 'R' && dominoes[i] == 'L'){
-                    add('R', (i - prevId - 1) / 2, ans);
-                    add('.', (i - prevId - 1) % 2, ans);
-                    add('L', (i - prevId - 1) / 2, ans);
-                }
-                else if(prev == 'R' && dominoes[i] == 'R')
-                    add('R', i - prevId - 1, ans);
+                add('L', i - prevId - 1, ans);
+            else if(prev == 'L' && dominoes[i] == 'R')
+                add('.', i - prevId - 1, ans);
+            else if(prev == 'R' && dominoes[i] == 'L'){
+                add('R', (i - prevId - 1) / 2, ans);
+                add('.', (i - prevId - 1) % 2, ans);
+                add('L', (i - prevId - 1) / 2, ans);
+            }
+            else if(prev == 'R' && dominoes[i] == 'R')
+                add('R', i - prevId - 1, ans);
             if(i != len - 1)
                 ans += dominoes[i];
             prev = dominoes[i];
