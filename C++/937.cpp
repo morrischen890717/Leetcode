@@ -1,6 +1,8 @@
 class Solution {
 public:
     vector<string> reorderLogFiles(vector<string>& logs) {
+        // using map, multiset, and find()
+        // split string with find() and substr(): https://java2blog.com/split-string-space-cpp/#Using_find_and_substr_methods
         vector<string> ans;
         map<string, multiset<string>> letterLogs;
         vector<string> digitLogs;
