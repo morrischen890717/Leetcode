@@ -3,18 +3,15 @@ public:
     int maxDistance(vector<vector<int>>& grid) {
         // using BFS
         int m = grid.size(), n = grid[0].size();
-        int cnt = 0;
         vector<int> dirs = {-1, 0, 1, 0, -1};
         queue<pair<int, int>> q;
         for(int i = 0; i < m; i++){
             for(int j = 0; j < n; j++){
-                if(grid[i][j]){
-                    cnt++;
+                if(grid[i][j])
                     q.push({i, j});
-                }
             }
         }
-        if(cnt == 0 || cnt == m * n)
+        if(q.size() == 0 || q.size() == m * n)
             return -1;
         int dist = 0;
         while(!q.empty()){
