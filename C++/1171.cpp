@@ -11,6 +11,7 @@
 class Solution {
 public:
     ListNode* removeZeroSumSublists(ListNode* head) {
+        // using prefix sum
         // time complexity: O(N)
         // reference: https://leetcode.com/problems/remove-zero-sum-consecutive-nodes-from-linked-list/solutions/366319/java-c-python-greedily-skip-with-hashmap/
         ListNode *root = new ListNode(0, head); // add root to prevent that head is removed
