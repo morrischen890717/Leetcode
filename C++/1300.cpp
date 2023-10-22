@@ -3,6 +3,7 @@ public:
     int findBestValue(vector<int>& arr, int target) {
         // using sort()
         // time complexity: O(NlogN)
+        // reference: https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/solutions/463306/java-c-python-just-sort-o-nlogn/
         int ans = -1, min_diff = INT_MAX;
         int n = arr.size();
         sort(arr.begin(), arr.end());
