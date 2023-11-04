@@ -24,7 +24,6 @@ public:
         int num = (endTime - startTime + 1) / chunk + ((endTime - startTime + 1) % chunk ? 1 : 0);
         vector<int> ans(num, 0);
         set<int>::iterator it_start = m[tweetName].lower_bound(startTime), it_end = m[tweetName].upper_bound(endTime);
-        int time = startTime, cnt = 0;
         while(it_start != it_end){
             ans[(*it_start - startTime) / chunk]++;
             it_start++;
