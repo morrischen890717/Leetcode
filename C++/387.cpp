@@ -1,16 +1,15 @@
 class Solution {
 public:
     int firstUniqChar(string s) {
-        vector<pair<int, int>> cnt(26, {0, -1}); // {cnt, last position}
-        for(int i = 0; i < s.length(); i++){
-            cnt[s[i] - 'a'].first++;
-            cnt[s[i] - 'a'].second = i;
+        int len = s.length();
+        vector<int> cnt(26, 0);
+        for(char c: s){
+            cnt[c - 'a']++;
         }
-        int pos = INT_MAX;
-        for(int i = 0; i < cnt.size(); i++){
-            if(cnt[i].first == 1 && cnt[i].second < pos)
-                pos = cnt[i].second;
+        for(int i = 0; i < len; i++){
+            if(cnt[s[i] - 'a'] == 1)
+                return i;
         }
-        return pos == INT_MAX ? -1 : pos;
+        return -1;
     }
 };
