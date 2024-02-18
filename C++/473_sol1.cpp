@@ -30,4 +30,4 @@ public:
             return false;
         return dfs(matchsticks, n, sideLength, 0, sum / 4);
     }
-};
+}; 
