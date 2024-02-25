@@ -1,23 +1,22 @@
 class Solution {
 public:
-    void solve(int n, vector<bool>& used, int i, int& cnt){
-        if(i > n){
-            cnt++;
-            return;
+    int solve(vector<int>& dp, int state, int n, int i){
+        if(i == n)
+            return 1;
+        if(dp[state] != -1)
+            return dp[state];
+        dp[state] = 0;
+        for(int j = 0; j < n; j++){
+            if(state & (1 << j) || ((j + 1) % (i + 1) && (i + 1) % (j + 1)))
+                continue;
+            dp[state] += solve(dp, state | (1 << j), n, i + 1);
         }
-        for(int j = 1; j <= n; j++){
-            if(!used[j] && (i % j == 0 || j % i == 0)){
-                used[j] = true;
-                solve(n, used, i + 1, cnt);
-                used[j] = false;
-            }
-        }
-        return;
+        return dp[state];
     }
     int countArrangement(int n) {
-        vector<bool> used(n + 1, false);
-        int cnt = 0;
-        solve(n, used, 1, cnt);
-        return cnt;
+        // using top-down DP and bit manipulation
+        vector<int> dp(1 << n, -1);
+        dp[(1 << n) - 1] = 1;
+        return solve(dp, 0, n, 0);
     }
 };
