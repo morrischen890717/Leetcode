@@ -1,31 +1,27 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
+        // using sliding window
         int len1 = s1.length(), len2 = s2.length();
         if(len2 < len1)
             return false;
-        vector<int> cnt1(26, 0);
-        vector<int> cnt2(26, 0);
-        for(int i = 0; i < len1; i++){
-            cnt1[s1[i] - 'a']++;
-            cnt2[s2[i] - 'a']++;
+        vector<int> cnt(26, 0);
+        for(char c: s1){
+            cnt[c - 'a']++;
         }
-        int l = 0, r = len1 - 1;
-        cnt2[s2[r] - 'a']--;
-        while(r < len2){
-            cnt2[s2[r] - 'a']++;
-            bool same = true;
-            for(int i = 0; i < 26; i++){
-                if(cnt1[i] != cnt2[i]){
-                    same = false;
+        for(int i = 0; i < len2; i++){
+            cnt[s2[i] - 'a']--;
+            if(i >= len1)
+                cnt[s2[i - len1] - 'a']++;
+            bool valid = true;
+            for(int num: cnt){
+                if(num != 0){
+                    valid = false;
                     break;
                 }
             }
-            if(same)
+            if(valid)
                 return true;
-            cnt2[s2[l] - 'a']--;
-            l++;
-            r++;
         }
         return false;
     }
