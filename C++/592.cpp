@@ -1,39 +1,35 @@
 class Solution {
 public:
-    int lcm(int a, int b){ // least common multiple
-        return a * b / gcd(a, b);
+    pair<int, int> calculate(int numerator1, int denominator1, int numerator2, int denominator2, int sign){
+        int gcd_num = gcd(denominator1, denominator2);
+        pair<int, int> res = {numerator1 * denominator2 / gcd_num + sign * numerator2 * denominator1 / gcd_num, denominator1 * denominator2 / gcd_num};
+        return res;
     }
     string fractionAddition(string expression) {
+        expression += '+';
         int len = expression.length();
-        int i = 0;
-        vector<int> numerator;
-        vector<int> denominator;
-        string s = "";
-        while(i < len){
-            char c = expression[i];
-            if(c == '/'){
-                numerator.push_back(stoi(s));
-                s = "";
+        int sign = 1;
+        pair<int, int> ans = {0, 1}, cur = {0, 1};
+        bool isNumerator = true;
+        for(int i = 0; i < len; i++){
+            if(expression[i] == '-' || expression[i] == '+'){
+                ans = calculate(ans.first, ans.second, cur.first, cur.second, sign);
+                sign = expression[i] == '+' ? 1 : -1;
+                isNumerator = true;
+                cur.first = 0;
             }
-            else if(c == '-' || c == '+'){
-                if(s != "")
-                    denominator.push_back(stoi(s));
-                s = (c == '-' ? "-" : "");
+            else if(expression[i] == '/'){
+                isNumerator = false;
+                cur.second = 0;
             }
+            else if(isNumerator)
+                cur.first = cur.first * 10 + (expression[i] - '0');
             else
-                s += c;
-            i++;
+                cur.second = cur.second * 10 + (expression[i] - '0');
         }
-        denominator.push_back(stoi(s));
-        int cur_num = 0, cur_denom = 1;
-        for(int j = 0; j < numerator.size(); j++){
-            int cur_lcm = lcm(cur_denom, denominator[j]);
-            cur_num = cur_num * cur_lcm / cur_denom + numerator[j] * cur_lcm / denominator[j];
-            cur_denom = cur_lcm;
-            int cur_gcd = gcd(cur_num, cur_denom);
-            cur_num /= cur_gcd;
-            cur_denom /= cur_gcd;
-        }
-        return to_string(cur_num) + "/" + to_string(cur_denom);
+        int gcd_num = gcd(ans.first, ans.second);
+        if(ans.first == 0)
+            return "0/1";
+        return to_string(ans.first / gcd_num) + "/" + to_string(ans.second / gcd_num);
     }
 };
