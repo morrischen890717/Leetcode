@@ -12,27 +12,11 @@
 class Solution {
 public:
     string tree2str(TreeNode* root) {
-        string s;
-        solve(root, s);
-        return s;
-    }
-    void solve(TreeNode* root, string& ans){
+        // using DFS
         if(!root)
-            return;
-        ans += to_string(root->val);
-        if(root->right){
-            ans += '(';
-            ans += tree2str(root->left);
-            ans += ')';
-            ans += '(';
-            ans += tree2str(root->right);
-            ans += ')';
-        }
-        else if(root->left){
-            ans += '(';
-            ans += tree2str(root->left);
-            ans += ')';
-        }
-        return;
+            return "";
+        if(root->right)
+            return to_string(root->val) + "(" + tree2str(root->left) + ")(" + tree2str(root->right) + ")";
+        return to_string(root->val) + (root->left ? "(" + tree2str(root->left) + ")" : "");
     }
 };
