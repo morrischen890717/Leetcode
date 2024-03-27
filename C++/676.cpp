@@ -1,37 +1,34 @@
 class MagicDictionary {
+private:
+    unordered_map<int, vector<string>> m;
 public:
-    vector<vector<string>> dictionary;
     MagicDictionary() {
-        dictionary = vector<vector<string>> (101);
+        
+    }
+    int charDiff(string& s1, string& s2){
+        int cnt = 0, len = s1.length();
+        for(int i = 0; i < len; i++){
+            if(s1[i] != s2[i])
+                cnt++;
+        }
+        return cnt;
     }
     
     void buildDict(vector<string> dictionary) {
         for(string& word: dictionary){
             int len = word.length();
-            this->dictionary[len].push_back(word);
+            m[len].push_back(word);
         }
         return;
     }
     
     bool search(string searchWord) {
         int len = searchWord.length();
-        for(string& s: dictionary[len]){
-            if(onlyOneDiff(s, searchWord))
+        for(string& word: m[len]){
+            if(charDiff(word, searchWord) == 1)
                 return true;
         }
         return false;
-    }
-
-    bool onlyOneDiff(string& s1, string& s2){
-        int len = s1.length();
-        int l = 0, r = len - 1;
-        while(l < len && s1[l] == s2[l]){
-            l++;
-        }
-        while(r >= 0 && s1[r] == s2[r]){
-            r--;
-        }
-        return l == r;
     }
 };
 
