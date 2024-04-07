@@ -14,6 +14,11 @@ public:
         return false;
     }
     bool exist(vector<vector<char>>& board, string word) {
+        /*
+        using DFS
+        reference: https://bclin.tw/2022/07/07/leetcode-79/ (for search pruning)
+                   https://imgur.com/VqribvU
+        */
         int n = board.size();
         int m = board[0].size();
         int l = word.length();
