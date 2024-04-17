@@ -11,28 +11,22 @@
  */
 class Solution {
 public:
-    void dfs(TreeNode* root, string s, string& ans){
+    void dfs(TreeNode* root, string cur, string& ans){
+        if(!root)
+            return;
         char c = 'a' + root->val;
-        s = c + s;
+        cur = c + cur;
         if(!root->left && !root->right){
-            if(ans == ".")
-                ans = s;
-            int min_len = min(s.length(), ans.length());
-            string sub_s = s.substr(0, min_len), sub_ans = ans.substr(0, min_len);
-            if(sub_s == sub_ans && s.length() < ans.length())
-                ans = s;
-            else
-                ans = sub_s < sub_ans ? s : ans;
+            if(cur < ans || ans == "")
+                ans = cur;
             return;
         }
-        if(root->left)
-            dfs(root->left, s, ans);
-        if(root->right)
-            dfs(root->right, s, ans);
+        dfs(root->left, cur, ans);
+        dfs(root->right, cur, ans);
         return;
     }
     string smallestFromLeaf(TreeNode* root) {
-        string ans = ".";
+        string ans = "";
         dfs(root, "", ans);
         return ans;
     }
