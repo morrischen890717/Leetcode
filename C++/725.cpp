@@ -10,29 +10,24 @@
  */
 class Solution {
 public:
-    int countNodes(ListNode* head){
-        ListNode *cur = head;
+    vector<ListNode*> splitListToParts(ListNode* head, int k) {
+        vector<ListNode*> ans(k, NULL);
         int n = 0;
+        ListNode *cur = head;
         while(cur){
             n++;
             cur = cur->next;
         }
-        return n;
-    }
-    vector<ListNode*> splitListToParts(ListNode* head, int k) {
-        vector<ListNode*> ans(k, NULL);
-        int n = countNodes(head);
-        int size = n / k;
-        int oneMore = n % k;
-        ListNode *cur = head, *prev = cur;
-        for(int i = 0; i < k; i++, oneMore--){
+        cur = head;
+        for(int i = 0; i < k && cur; i++){
             ans[i] = cur;
-            for(int j = 0; j < (oneMore > 0 ? size + 1 : size); j++){
-                prev = cur;
+            int num = n / k + (i < n % k ? 1 : 0);
+            for(int j = 0; j < num - 1; j++){
                 cur = cur->next;
             }
-            if(prev)
-                prev->next = NULL;
+            ListNode *next = cur->next;
+            cur->next = NULL;
+            cur = next;
         }
         return ans;
     }
