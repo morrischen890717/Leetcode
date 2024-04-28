@@ -1,29 +1,27 @@
 class Solution {
 public:
-    char convert(char c){
-        if(c >= 'a' && c <= 'z')
-            return 'A' + (c - 'a');
-        return 'a' + (c - 'A');
+    void addChar(string& s, string& cur, int i, char c, vector<string>& ans){
+        cur += c;
+        solve(s, cur, i + 1, ans);
+        cur.pop_back();
+        return;
     }
-    void solve(int len, int i, vector<string>& ans){
-        if(i >= len)
+    void solve(string& s, string& cur, int i, vector<string>& ans){
+        if(i == s.length()){
+            ans.push_back(cur);
             return;
-        if(!isdigit(ans[0][i])){
-            int size = ans.size();
-            for(int j = 0; j < size; j++){
-                string s = ans[j];
-                s[i] = convert(s[i]);
-                ans.push_back(s);
-            }
         }
-        solve(len, i + 1, ans);
+        addChar(s, cur, i, s[i], ans);
+        if(isupper(s[i]))
+            addChar(s, cur, i, tolower(s[i]), ans);
+        else if(islower(s[i]))
+            addChar(s, cur, i, toupper(s[i]), ans);
         return;
     }
     vector<string> letterCasePermutation(string s) {
-        int len = s.length();
         vector<string> ans;
-        ans.push_back(s);
-        solve(len, 0, ans);
+        string cur = "";
+        solve(s, cur, 0, ans);
         return ans;
     }
 };
