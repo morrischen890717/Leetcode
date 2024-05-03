@@ -1,34 +1,31 @@
 class Solution {
 public:
-    bool getUpper(string& bottom, int i, unordered_map<string, vector<char>>& m, string& upper){
+    bool solve(unordered_map<string, vector<char>>& m, string& bottom, string& s, int i){
         if(i == bottom.size() - 1)
-            return solve(m, upper); // go to upper level
-        for(char c: m[bottom.substr(i, 2)]){
-            upper += c;
-            if(getUpper(bottom, i + 1, m, upper))
+            return dfs(m, s);
+        string base = bottom.substr(i, 2);
+        if(m.count(base) == 0)
+            return false;
+        for(char c: m[base]){
+            s += c;
+            if(solve(m, bottom, s, i + 1))
                 return true;
-            upper.pop_back();
+            s.pop_back();
         }
         return false;
     }
-    bool solve(unordered_map<string, vector<char>>& m, string& bottom){
+    bool dfs(unordered_map<string, vector<char>>& m, string& bottom){
         int len = bottom.length();
         if(len == 1)
             return true;
-        for(int i = 0; i < len - 1; i++){
-            if(m.count(bottom.substr(i, 2)) == 0)
-                return false;
-        }
-        string upper = "";
-        return getUpper(bottom, 0, m, upper);
+        string s = "";
+        return solve(m, bottom, s, 0);
     }
     bool pyramidTransition(string bottom, vector<string>& allowed) {
-        int n = allowed.size();
         unordered_map<string, vector<char>> m;
         for(string& allow: allowed){
-            string s = allow.substr(0, 2);
-            m[s].push_back(allow[2]);
+            m[allow.substr(0, 2)].push_back(allow[2]);
         }
-        return solve(m, bottom);
+        return dfs(m, bottom);
     }
 };
