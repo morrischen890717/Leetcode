@@ -2,28 +2,22 @@ class Solution {
 public:
     int matrixScore(vector<vector<int>>& grid) {
         // using Greedy
-        int m = grid.size(), n = grid[0].size();
         int ans = 0;
+        int m = grid.size(), n = grid[0].size();
+        // make the most significant bit of all row become 1
         for(int i = 0; i < m; i++){
-            bool toggle = grid[i][0] == 0;
-            int num = 0;
+            bool flip = !grid[i][0];
             for(int j = 0; j < n; j++){
-                num <<= 1;
-                if(toggle)
+                if(flip)
                     grid[i][j] = !grid[i][j];
-                num |= (grid[i][j]);
             }
-            ans += num;
         }
         for(int j = 0; j < n; j++){
-            int cnt1 = 0;
+            int cnt = 0;
             for(int i = 0; i < m; i++){
-                if(grid[i][j])
-                    cnt1++;
+                cnt += grid[i][j];
             }
-            if(m - cnt1 > cnt1){ // # of 0 > # of 1
-                ans += pow(2, n - 1 - j) * (m - 2 * cnt1);
-            }
+            ans += max(cnt, m - cnt) * (1 << (n - 1 - j));
         }
         return ans;
     }
