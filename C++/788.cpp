@@ -1,30 +1,23 @@
 class Solution {
 public:
-    bool check(int cur){ // check whether cur has only '0', '1', '8' or not
-        int remainder = cur % 10;
-        while(cur > 0 && (remainder == 0 || remainder == 1 || remainder == 8)){
-            cur /= 10;
-            remainder = cur % 10;
-        }
-        return cur == 0 ? false : true;
-    }
-    int dfs(int n, int digitsNum, vector<int>& valid, int cur, int pos){
-        if(pos == digitsNum)
-            return (check(cur) && cur <= n ? 1 : 0);
-        int cnt = 0;
-        for(int num: valid){
-            cnt += dfs(n, digitsNum, valid, cur * 10 + num, pos + 1);
-        }
-        return cnt;
-    }
     int rotatedDigits(int n) {
-        vector<int> valid = {0, 1, 2, 5, 6, 8, 9};
-        int digitsNum = 0; // # of digits
-        int tmp = n;
-        while(tmp){
-            digitsNum++;
-            tmp /= 10;
+        int ans = 0;
+        for(int i = 1; i <= n; i++){
+            int num = i;
+            bool valid = false;
+            while(num){
+                int digit = num % 10;
+                if(digit == 3 || digit == 4 || digit == 7){
+                    valid = false;
+                    break;
+                }
+                else if(digit == 2 || digit == 5 || digit == 6 || digit == 9)
+                    valid = true;
+                num /= 10;
+            }
+            if(valid)
+                ans++;
         }
-        return dfs(n, digitsNum, valid, 0, 0);
+        return ans;
     }
 };
