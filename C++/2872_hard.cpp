@@ -1,15 +1,13 @@
 class Solution {
 public:
     int dfs(vector<vector<int>>& graph, vector<int>& values, int prev, int cur, int k, int& ans){
-        int sum = 0;
+        int sum = values[cur] % k;
         for(int next: graph[cur]){
             if(next == prev)
                 continue;
             sum += dfs(graph, values, cur, next, k, ans);
             sum %= k;
         }
-        sum += values[cur];
-        sum %= k;
         if(sum == 0)
             ans++;
         return sum;
